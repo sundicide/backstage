@@ -18,9 +18,18 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import typescript from 'rollup-plugin-typescript2';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
 import imageFiles from 'rollup-plugin-image-files';
 import { RollupWatchOptions } from 'rollup';
+
+const NAMED_EXPORTS_OVERRIDES: Record<string, string[]> = {
+  'node_modules/react-is/index.js': ['isValidElementType'],
+  'node_modules/react-sparklines/build/index.js': [
+    'Sparklines',
+    'SparklinesLine',
+  ],
+};
 
 export default {
   input: 'src/index.ts',
@@ -33,9 +42,18 @@ export default {
     resolve(),
     commonjs({
       include: ['node_modules/**', '../../node_modules/**'],
-      exclude: ['**/*.stories.js'],
+      exclude: ['**/*.stories.*', '**/*.test.*'],
+      namedExports: Object.keys(NAMED_EXPORTS_OVERRIDES).reduce(
+        (result, key) => ({
+          ...result,
+          [key]: NAMED_EXPORTS_OVERRIDES[key],
+          [`../../${key}`]: NAMED_EXPORTS_OVERRIDES[key],
+        }),
+        {},
+      ),
     }),
     postcss(),
+    json(),
     imageFiles(),
     typescript(),
   ],

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
-export { default as ApiProvider, useApi } from './ApiProvider';
-export { default as ApiRegistry } from './ApiRegistry';
-export { default as ApiTestRegistry } from './ApiTestRegistry';
-export { default as ApiRef } from './ApiRef';
-export * from './types';
-export * from './definitions';
+import React from 'react';
+import { render } from '@testing-library/react';
+import mockFetch from 'jest-fetch-mock';
+import AuditList from './AuditList';
+import { ThemeProvider } from '@material-ui/core';
+import { BackstageTheme } from '@backstage/core';
+
+describe('ExampleComponent', () => {
+  it('should render', () => {
+    mockFetch.mockResponse(() => new Promise(() => {}));
+    const rendered = render(
+      <ThemeProvider theme={BackstageTheme}>
+        <AuditList />
+      </ThemeProvider>,
+    );
+    expect(rendered.getByText('Audits')).toBeInTheDocument();
+  });
+});

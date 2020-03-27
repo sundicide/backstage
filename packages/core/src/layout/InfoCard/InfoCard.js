@@ -129,6 +129,8 @@ class InfoCard extends Component {
     deepLink: PropTypes.object,
     slackChannel: PropTypes.string,
     variant: PropTypes.string,
+    actions: PropTypes.element,
+    cardClassName: PropTypes.string,
   };
 
   render() {
