@@ -13,10 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { default as HomePagePlugin } from '@backstage/plugin-home-page';
-import { default as WelcomePlugin } from '@backstage/plugin-welcome';
-export { HomePagePlugin, WelcomePlugin };
-import { default as MyPlugin } from '@backstage/plugin-my-plugin';
-export { MyPlugin };
-import { default as Moneybook } from '@backstage/plugin-moneybook';
-export { Moneybook };
+import Vue from 'vue';
+import App from './App.vue';
+// import store from './store'
+
+// import BootstrapVue from 'bootstrap-vue'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+// Vue.use(BootstrapVue)
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: h => h(App),
+  // store,
+}).$mount('#app');

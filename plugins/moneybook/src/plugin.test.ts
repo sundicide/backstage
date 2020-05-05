@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { default as HomePagePlugin } from '@backstage/plugin-home-page';
-import { default as WelcomePlugin } from '@backstage/plugin-welcome';
-export { HomePagePlugin, WelcomePlugin };
-import { default as MyPlugin } from '@backstage/plugin-my-plugin';
-export { MyPlugin };
-import { default as Moneybook } from '@backstage/plugin-moneybook';
-export { Moneybook };
+
+import plugin from './plugin';
+
+describe('moneybook', () => {
+  it('should export plugin', () => {
+    expect(plugin).toBeDefined();
+  });
+});

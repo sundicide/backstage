@@ -79,6 +79,8 @@ const Root: FC<{}> = ({ children }) => (
       <SidebarDivider />
       <SidebarItem icon={HomeIcon} to="/" text="Home" />
       <SidebarItem icon={AccountCircle} to="/login" text="Login" />
+      <SidebarItem icon={AccountCircle} to="/my-plugin" text="My Plugin" />
+      <SidebarItem icon={AccountCircle} to="/moneybook" text="moneybook" />
       <SidebarDivider />
       <SidebarSpace />
     </Sidebar>
